@@ -1,12 +1,24 @@
-import Navbar from './components/navbar/navbar';
-import ItemListContainer from './components/itemlistcontainer/itemlistcontainer';
+import Navbar from './components/Navbar/navbar';
+import {useEffect, useState} from 'react';
+import ItemListContainer from './components/ItemListContainer/itemlistcontainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+//import BasicExample from './components/bootstrap/tarjeta';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Navbar/>
       </header>
-      <ItemListContainer greeting='Bienvenidos'/>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element= {<ItemListContainer greeting='Lista de Productos' />} />
+          <Route path='/detail/:productId' element={<ItemDetailContainer />}/>
+          <Route path='/category/:categoryId' element={<ItemListContainer/>} />
+        </Routes>  
+      </BrowserRouter>
     </div>
   );
 }
